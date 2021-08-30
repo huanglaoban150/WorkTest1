@@ -1,0 +1,91 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+<head>
+    <title>注册</title>
+    <link rel="stylesheet" href="./layui/css/layui.css">
+    <script src="./layui/layui.js"></script>
+    <style>
+        .login_p1{
+            color:#000000;
+            font-size: 25px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body style="margin-top: 70px;margin-left: 350px;margin-right: 15px;margin-bottom: 10px;align-items: center" >
+<div class="registry_div layui-bg-white">
+    <form class="layui-form layui-form-pane" action="" id="demo1">
+
+        <div class="layui-form-item login_top">
+            <label class="layui-form-label" style="width: 70px;">
+                <i class="layui-icon layui-icon-group" style="font-size: 20px; color: #FFB800;"></i>
+            </label>
+            <div class="layui-input-inline">
+                <input type="text" name="jname" lay-verify="required" placeholder="请输入职位名" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item login_top">
+            <label class="layui-form-label" style="width: 70px;">
+                <i class="layui-icon layui-icon-about" style="font-size: 20px; color: #FFB800;"></i>
+            </label>
+            <div class="layui-input-inline">
+                <input type="text"  name="jremark" lay-verify="" placeholder="职位的备注信息(可不填)" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+
+
+
+
+
+
+
+        <div class="login_p1" >
+            <div class=""  style="width: 380px" >
+                <button data-method="notice" class="layui-btn layui-btn-fluid layui-bg-blue" lay-submit="" lay-filter="demo1" style="margin-left: 120px;width: 60px;">确定</button>
+            </div>
+        </div>
+
+    </form>
+</div>
+</body>
+<script>
+
+    layui.use(['form', 'layedit', 'laydate','layer','jquery'], function(){
+        var form = layui.form
+            ,layer = layui.layer
+            ,layedit = layui.layedit
+            ,$=layui.jquery
+            ,laydate = layui.laydate;
+
+
+
+        //监听提交
+        form.on('submit(demo1)', function(data){
+            //   layer.alert(JSON.stringify(data.field), {
+            //      title: '最终的提交信息'
+            //   })
+            var checkcodeText=data.field.checkcode;
+
+            var json={"checkcode":checkcodeText,"json":JSON.stringify(data.field)}//接收到的数据
+            //用ajax完成后台数据交换 $.post(url.json,function (data)
+            $.post('addJob',json,function (data){
+                if (data==1)
+                    layer.msg("添加职位成功",{icon: 1});
+                if (data==2)
+                    layer.msg("添加职位失败失败",{icon:5});
+                if (data==3)
+                    layer.msg("权限不足，无法进行操作",{icon:5});
+            });
+
+            return false;
+        });
+        //表单取值
+        layui.$('#LAY-component-form-getval').on('click', function(){
+            var data = form.val('example');
+            alert(JSON.stringify(data));
+        });
+
+    });
+</script>
+</html>

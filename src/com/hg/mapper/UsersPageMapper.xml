@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hg.mapper.UsersPageMapper" >
+    <resultMap id="BaseResultMap" type="com.hg.pojo.User" >
+        <id column="number" property="number" jdbcType="VARCHAR" />
+        <result column="password" property="password" jdbcType="VARCHAR" />
+        <result column="role_id" property="role_id" jdbcType="INTEGER" />
+        <result column="phone" property="phone" jdbcType="VARCHAR" />
+        <result column="createdate" property="createdate" jdbcType="TIMESTAMP" />
+        <result column="username" property="username" jdbcType="VARCHAR" />
+        <result column="remark" property="remark" jdbcType="VARCHAR" />
+    </resultMap>
+    <select id="selectUsers" resultMap="BaseResultMap" parameterType="com.hg.pojo.UsersPage">
+        select * from user limit #{start},#{limit};
+    </select>
+
+
+        <resultMap id="BaseResultMap5" type="com.hg.pojo.User1" >
+            <id column="number" property="number" jdbcType="VARCHAR" />
+            <result column="roleId" property="roleId" jdbcType="INTEGER" />
+            <result column="phone" property="phone" jdbcType="VARCHAR" />
+            <result column="createdate" property="createdate" jdbcType="TIMESTAMP" />
+            <result column="username" property="username" jdbcType="VARCHAR" />
+            <result column="remark" property="remark" jdbcType="VARCHAR" />
+        </resultMap>
+        <select id="selectUsers1" resultMap="BaseResultMap5" parameterType="com.hg.pojo.UsersPage">
+            select * from user limit #{start},#{limit};
+        </select>
+
+    <resultMap id="BaseResultMap1" type="com.hg.pojo.Dept" >
+        <id column="did" property="did" jdbcType="INTEGER" />
+        <result column="dname" property="dname" jdbcType="VARCHAR" />
+        <result column="dremark" property="dremark" jdbcType="VARCHAR" />
+    </resultMap>
+    <select id="selectDepts" resultMap="BaseResultMap1" parameterType="com.hg.pojo.UsersPage">
+        select * from dept limit #{start},#{limit};
+    </select>
+
+    <resultMap id="BaseResultMap2" type="com.hg.pojo.Employee" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="dept_id" property="deptId" jdbcType="INTEGER" />
+        <result column="job_id" property="jobId" jdbcType="INTEGER" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="card_id" property="cardId" jdbcType="VARCHAR" />
+        <result column="address" property="address" jdbcType="VARCHAR" />
+        <result column="post_code" property="postCode" jdbcType="VARCHAR" />
+        <result column="tel" property="tel" jdbcType="VARCHAR" />
+        <result column="phone" property="phone" jdbcType="VARCHAR" />
+        <result column="qq_num" property="qqNum" jdbcType="VARCHAR" />
+        <result column="email" property="email" jdbcType="VARCHAR" />
+        <result column="sex" property="sex" jdbcType="CHAR" />
+        <result column="party" property="party" jdbcType="CHAR" />
+        <result column="birthday" property="birthday" jdbcType="TIMESTAMP" />
+        <result column="race" property="race" jdbcType="VARCHAR" />
+        <result column="education" property="education" jdbcType="VARCHAR" />
+        <result column="speciality" property="speciality" jdbcType="VARCHAR" />
+        <result column="hobby" property="hobby" jdbcType="VARCHAR" />
+        <result column="remark" property="remark" jdbcType="VARCHAR" />
+        <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <select id="selectEmployee" resultMap="BaseResultMap2" parameterType="com.hg.pojo.UsersPage">
+        select * from employee limit #{start},#{limit};
+    </select>
+
+    <select id="selectJob" resultMap="BaseResultMap3" parameterType="com.hg.pojo.UsersPage">
+        select * from job limit #{start},#{limit};
+    </select>
+    <resultMap id="BaseResultMap3" type="com.hg.pojo.Job" >
+        <id column="jid" property="jid" jdbcType="INTEGER" />
+        <result column="jname" property="jname" jdbcType="VARCHAR" />
+        <result column="jremark" property="jremark" jdbcType="VARCHAR" />
+    </resultMap>
+</mapper>
